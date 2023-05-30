@@ -87,11 +87,19 @@ if (process.argv[2] == "start") {
       return;
     }
 
+    //check if the message answer to the bot
+    if (message.mentions.users.has(config.DISCORD_CLIENT_ID)) {
+      const insultService = InsultService.getInstance();
+      await message.reply(insultService.getInsult());
+    }
+
     if (Math.floor(Math.random() * 100) == 1) {
       const insultService = InsultService.getInstance();
       const insult = insultService.getInsult();
 
       await message.reply(insult);
+
+      return;
     }
   });
 

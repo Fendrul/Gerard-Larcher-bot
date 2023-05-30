@@ -15,11 +15,14 @@ export class UngagCommand implements Command {
     const gagService = GagService.getInstance();
 
     if (!gagService.isGagged(interaction.user.id)) {
-      gagService.removeUser(user.id);
-      return interaction.reply(`Successfuly ungagged ${user.username} !`);
+      if (gagService.removeUser(user.id)) {
+        return interaction.reply(`Même si j'aurais voulu encore le molester un peu, je vais relâcher ${user.username} !`);
+      } else {
+        return interaction.reply("cet utilisateur n'était même pas gag, ne te fous pas de moi.");
+      }
     } else {
       if (interaction.user.id === user.id) {
-        return interaction.reply("Tu oses vouloir te débarasser de tes chaînes de la servitude ?! *grommela Gérard, plein de colère*");
+        return interaction.reply("Tu oses vouloir te débarasser de tes chaînes de la servitude ?! *grommela Gérard, plein de colère, sa bouche dégoulinant d'huile de palme*");
       } else {
         return interaction.reply("La fraternité dans l'adversité est bien belle, mais impuissante face à mon ventre plein ! \n*Gérard Larcher, 2021*");
       }
