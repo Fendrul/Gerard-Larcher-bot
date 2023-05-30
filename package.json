@@ -16,14 +16,17 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "start": "node .",
+    "start": "npm run build && node --enable-source-maps dist/index.js start",
     "build": "tsup src/index.ts --minify",
     "format": "prettier --write \"**/*.{json,ts}\"",
-    "lint": "eslint . --ext ts --fix"
+    "lint": "eslint . --ext ts --fix",
+    "commands:register": "npm run build && node --enable-source-maps dist/index.js commands register"
   },
   "dependencies": {
     "discord.js": "^14.7.1",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "jsmin": "^1.0.1",
+    "typescript-optional": "^3.0.0-alpha.3"
   },
   "devDependencies": {
     "@types/node": "^18.13.0",
