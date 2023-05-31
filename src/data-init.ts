@@ -29,7 +29,8 @@ export function dataInit() {
     "Tu es dans le top 3 des personnes les plus chiantes, et tu n'es pas à la troisième place.",
     "Ce n'est pas dangereux que tu utilises tout ton vocabulaire dans une seule phrase ?",
     "Je suis jaloux de toutes les personnes qui ne te connaissent pas.",
-    "Il n'y a pas une balle quelque part devant laquelle tu pourrais sauter ?",
+    "Il n'y a pas une quelque part devant laquelle tu pourrais sauter ?",
     "Les personnes qui te tolèrent au quotidien sont les vrais héros.",
+    "Toi, tu as une tête à connaître le gût des crayons de couleur."
   );
 }

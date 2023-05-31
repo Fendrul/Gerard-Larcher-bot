@@ -1,4 +1,4 @@
-import {Client, Events, IntentsBitField, REST, Routes} from "discord.js";
+import {AuditLogEvent, Client, Events, IntentsBitField, REST, Routes} from "discord.js";
 import {config} from "./config";
 import {commands} from "./commands";
 import {CustomResponseService} from "./services";
@@ -93,6 +93,11 @@ if (process.argv[2] == "start") {
       await message.reply(insultService.getInsult());
     }
 
+
+    if (customResponseService.containsTrigger(message.content)) {
+      await message.reply(customResponseService.getAnswer(message.content).get());
+    }
+
     if (Math.floor(Math.random() * 100) == 1) {
       const insultService = InsultService.getInstance();
       const insult = insultService.getInsult();
@@ -102,6 +107,7 @@ if (process.argv[2] == "start") {
       return;
     }
   });
+
 
   client.login(config.DISCORD_TOKEN);
 }

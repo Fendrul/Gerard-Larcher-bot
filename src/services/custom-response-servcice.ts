@@ -21,7 +21,7 @@ export class CustomResponseService {
     this.responses.set(text, response);
   }
 
-  public getInsult(sentence: string): Optional<string> {
+  public getAnswer(sentence: string): Optional<string> {
     //Search through the whole sentence to find a match
     for (const [key, value] of this.responses) {
       if (sentence.includes(key)) {
@@ -30,6 +30,16 @@ export class CustomResponseService {
     }
 
     return Optional.empty();
+  }
+
+  public containsTrigger(sentence: string): boolean {
+    for (const [key, value] of this.responses) {
+      if (sentence.includes(key)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   public clearResponses(): void {

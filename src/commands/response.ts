@@ -18,7 +18,7 @@ export class ResponseCommand implements Command {
 
     customResponseService.addResponse(trigger, response);
 
-    return interaction.reply(`Successfuly added the response "${response}" to "${trigger}" !`);
+    return interaction.reply(`Successfuly added the response \`"${response}"\` to \`"${trigger}"\` !`);
   }
 
 }
