@@ -31,6 +31,10 @@ export function dataInit() {
     "Je suis jaloux de toutes les personnes qui ne te connaissent pas.",
     "Il n'y a pas une quelque part devant laquelle tu pourrais sauter ?",
     "Les personnes qui te tolèrent au quotidien sont les vrais héros.",
-    "Toi, tu as une tête à connaître le gût des crayons de couleur."
+    "Toi, tu as une tête à connaître le gût des crayons de couleur.",
+    "Toi, ce ne sera pas si grave si jamais tu glisses dans les escaliers.",
+    "Si je te lançais des cailloux, tu serais capable de les éplucher.",
+    "va jouer avec le mixeur sur la route, ce sera sûrement plus intéressant pour nous.",
+    "Bon, ça commence à bien faire. Tiens, trois balles pour aller t'acheter un cerveau."
   );
 }
