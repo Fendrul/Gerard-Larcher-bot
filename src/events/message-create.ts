@@ -12,6 +12,7 @@ export function messageCreateEvent(client: Client<boolean>) {
   client.on(Events.MessageCreate, async (message) => {
     if (message.author.bot) return;
 
+    //Block the user from talking if gagged
     if (gagService.isGagged(message.author.id)) {
       await message.delete();
 
@@ -25,7 +26,11 @@ export function messageCreateEvent(client: Client<boolean>) {
 
     if (lastWord) {
       if (stringDetector(lastWord, "quoi", "coi", "kwa", "coua", "koua", "koi")) {
-        message.reply("QUOICOUBEH ?!");
+        await message.reply("QUOICOUBEH ?!");
+        return;
+      } else if (lastWord.endsWith("hein")) {
+        await message.reply("APAGNANHAAAAAAAN");
+        return;
       }
     }
 
@@ -33,12 +38,14 @@ export function messageCreateEvent(client: Client<boolean>) {
     if (message.mentions.users.has(config.DISCORD_CLIENT_ID)) {
       const insultService = InsultService.getInstance();
       await message.reply(insultService.getInsult());
+      return;
     }
 
 
     //trigger the custom response
     if (customResponseService.containsTrigger(message.content)) {
       await message.reply(customResponseService.getAnswer(message.content).get());
+      return;
     }
 
     //random insult
