@@ -22,7 +22,7 @@ export function messageCreateEvent(client: Client<boolean>) {
     }
 
     //check if the end of the content is "quoi"
-    const lastWord = message.content.replaceAll(/[!\"#\＄%&\'\(\)\*\+,-\./:;<=>\?@\[\\\]\^_`{\|}~]/g, "").replaceAll(" ", "");
+    const lastWord = message.content.replaceAll(/[!\"#\＄%&\'\(\)\*\+,-\./:;<=>\?@\[\\\]\^_`{\|}~]/g, "").replaceAll(" ", "").toLowerCase();
 
     if (lastWord) {
       if (stringDetector(lastWord, "quoi", "coi", "kwa", "coua", "koua", "koi")) {
