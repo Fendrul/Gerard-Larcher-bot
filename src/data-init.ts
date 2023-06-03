@@ -8,7 +8,7 @@ export function dataInit() {
     "T'es tellement con que tu pourrais être ministre de l'intérieur.",
     "Pourquoi tu parles ?",
     "Va mourir dans un coin au lieu de nous épancher ta vie de merde.",
-    "Ferme bien ta gueul.e",
+    "Ferme bien ta gueule.",
     "Mange ma merde.",
     "Quelqu'un écoute vraiment ce qu'il dit ?",
     "Mange mes pieds.",

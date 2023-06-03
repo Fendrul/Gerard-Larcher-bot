@@ -3,6 +3,7 @@ import {config} from "../config";
 import {InsultService} from "../services/insult-service";
 import {GagService} from "../services/gag-service";
 import {CustomResponseService} from "../services";
+import {stringDetector} from "../utils/stringDetector";
 
 export function messageCreateEvent(client: Client<boolean>) {
   const gagService = GagService.getInstance();
@@ -19,6 +20,15 @@ export function messageCreateEvent(client: Client<boolean>) {
       return;
     }
 
+    //check if the end of the content is "quoi"
+    const lastWord = message.content.replaceAll(/[!\"#\＄%&\'\(\)\*\+,-\./:;<=>\?@\[\\\]\^_`{\|}~]/g, "").replaceAll(" ", "");
+
+    if (lastWord) {
+      if (stringDetector(lastWord, "quoi", "coi", "kwa", "coua", "koua", "koi")) {
+        message.reply("QUOICOUBEH ?!");
+      }
+    }
+
     //check if the message answer to the bot
     if (message.mentions.users.has(config.DISCORD_CLIENT_ID)) {
       const insultService = InsultService.getInstance();
@@ -26,10 +36,12 @@ export function messageCreateEvent(client: Client<boolean>) {
     }
 
 
+    //trigger the custom response
     if (customResponseService.containsTrigger(message.content)) {
       await message.reply(customResponseService.getAnswer(message.content).get());
     }
 
+    //random insult
     if (Math.floor(Math.random() * 100) == 1) {
       const insultService = InsultService.getInstance();
       const insult = insultService.getInsult();

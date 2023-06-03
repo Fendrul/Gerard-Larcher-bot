@@ -6,9 +6,6 @@ import {userPrompt} from "./prompt";
 export async function login() {
   const password = await userPrompt("Enter password: ");
 
-  // console.log("client id : " + encryptString(password, config.DISCORD_CLIENT_ID));
-  // console.log("guild id : " + encryptString(password, config.GUILD_ID));
-
   config.DISCORD_TOKEN = decryptString(password, config.DISCORD_TOKEN);
   config.DISCORD_CLIENT_ID = decryptString(password, config.DISCORD_CLIENT_ID);
   config.GUILD_ID = decryptString(password, config.GUILD_ID);
