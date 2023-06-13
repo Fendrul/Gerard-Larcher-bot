@@ -1,6 +1,7 @@
 ## 💻 Project
 
-A boilerplate for a project with Discord.js, TypeScript and ESLint.
+This bot is only a game i made for friends and have no serious purpose.
+It is prepared to be used with Docker.
 
 ## 🚀 Technologies
 
@@ -10,7 +11,3 @@ This project was developed with the following technologies:
 - [discord.js][discord.js]
 - [ESLint][eslint]
 - [Prettier][prettier]
-
-## ℹ️ Purpose
-
-This bot is only a game i made for friends and have no serious purpose
