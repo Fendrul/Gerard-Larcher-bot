@@ -12,6 +12,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: 22
-          script: whoami
+          script: whoami |
+            ${{ secrets.HOST }}
+            ls -al
           
           ## You can also use a password instead of a key
