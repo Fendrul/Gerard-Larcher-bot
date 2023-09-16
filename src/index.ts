@@ -2,7 +2,6 @@ import {AuditLogEvent, Client, IntentsBitField, REST, Routes} from "discord.js";
 import {config} from "./config";
 import {commands} from "./commands";
 import {dataInit} from "./data-init";
-import {login} from "./utils/login";
 import {messageCreateEvent} from "./events/message-create";
 import {interactionCreateEvent} from "./events/interaction-create";
 
@@ -19,7 +18,7 @@ dataInit();
 
 async function main() {
 
-  await login();
+  // await login();
 
   if (process.argv[2] == "commands") {
     const rest = new REST().setToken(config.DISCORD_TOKEN);
@@ -41,6 +40,7 @@ async function main() {
   }
 
   if (process.argv[2] == "start") {
+    console.log(config.DISCORD_TOKEN);
     client.once("ready", () => {
       console.log("Discord bot is ready! 🤖");
     });
