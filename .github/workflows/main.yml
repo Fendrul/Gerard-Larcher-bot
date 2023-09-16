@@ -5,7 +5,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: executing remote ssh commands using ssh key
+      - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.HOST }}
@@ -13,4 +13,4 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: whoami
-          
+          debug: true
