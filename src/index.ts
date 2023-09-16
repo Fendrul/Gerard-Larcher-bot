@@ -18,8 +18,6 @@ dataInit();
 
 async function main() {
 
-  // await login();
-
   if (process.argv[2] == "commands") {
     const rest = new REST().setToken(config.DISCORD_TOKEN);
 
