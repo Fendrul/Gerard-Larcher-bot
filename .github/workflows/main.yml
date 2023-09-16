@@ -16,4 +16,3 @@ jobs:
             ${{ secrets.HOST }}
             ls -al
           
-          ## You can also use a password instead of a key
