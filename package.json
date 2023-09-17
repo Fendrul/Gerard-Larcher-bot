@@ -16,6 +16,7 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
+    "pm2": "pm2 start npm --name \"discord bot\" -- run start",
     "start": "npm run build && node --enable-source-maps dist/index.js start",
     "build": "tsup src/index.ts --minify",
     "format": "prettier --write \"**/*.{json,ts}\"",
