@@ -7,4 +7,5 @@ jobs:
     steps:
       - name: test
         run: |
-          whoami
+          source /home/woju5294/nodevenv/repositories/bot/Gerard-Larcher-bot/16/bin/activate && cd /home/woju5294/repositories/bot/Gerard-Larcher-bot
+          npm run start
