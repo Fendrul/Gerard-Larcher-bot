@@ -5,13 +5,5 @@ jobs:
     name: Build
     runs-on: self-hosted
     steps:
-      - name: execute SSH command
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          passphrase: ${{ secrets.PASSPHRASE }}
-          port: 22
-          script: whoami
-          debug: true
-          ##test
+      - name: execute command
+        run: whoami
