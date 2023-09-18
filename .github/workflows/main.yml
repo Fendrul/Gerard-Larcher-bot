@@ -6,11 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: execute SSH command
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@0.2.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: whoami
+          debug: true
           ##test
