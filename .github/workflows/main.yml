@@ -8,4 +8,4 @@ jobs:
       - name: execute command
         run: |
           source /home/woju5294/nodevenv/repositories/bot/Gerard-Larcher-bot/16/bin/activate && cd /home/woju5294/repositories/bot/Gerard-Larcher-bot
-          pm2 start dist/index.js
+          pm2 start dist/index.js --name"Gérard Larcher bot"
