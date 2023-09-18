@@ -3,9 +3,15 @@ on: [ push ]
 jobs:
   build:
     name: Build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+    ##use the appleboy pplugin
     steps:
-      - name: test
-        run: |
-          source /home/woju5294/nodevenv/repositories/bot/Gerard-Larcher-bot/16/bin/activate && cd /home/woju5294/repositories/bot/Gerard-Larcher-bot
-          npm run start
+      - name: Remote SSH command
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          port: 22
+          script: whoami
