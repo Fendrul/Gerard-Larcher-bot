@@ -3,7 +3,7 @@ on: [ push ]
 jobs:
   build:
     name: Build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: execute SSH command
         uses: appleboy/ssh-action@master
