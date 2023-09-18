@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: execute SSH command
-        uses: appleboy/ssh-action@0.2.0
+        uses: appleboy/ssh-action@1.0.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
