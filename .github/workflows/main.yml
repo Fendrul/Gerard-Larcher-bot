@@ -5,7 +5,11 @@ jobs:
     name: Build
     runs-on: self-hosted
     steps:
-      - name: test
-        run: |
-          source /home/woju5294/nodevenv/repositories/bot/Gerard-Larcher-bot/16/bin/activate && cd /home/woju5294/repositories/bot/Gerard-Larcher-bot
-          npm run start
+      - name: execute SSH command
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: whoami
