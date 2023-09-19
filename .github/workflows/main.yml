@@ -3,15 +3,8 @@ on: [ push ]
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     ##use the appleboy pplugin
     steps:
-      - name: Remote SSH command
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
-          port: 22
-          script: whoami ##
+      - name: test
+        run: whoami
