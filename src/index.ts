@@ -16,8 +16,6 @@ export const client = new Client({
 
 dataInit();
 
-console.log("Nouvelle version du bot !");
-
 async function main() {
   client.once("ready", () => {
     console.log("Discord bot is ready! 🤖");

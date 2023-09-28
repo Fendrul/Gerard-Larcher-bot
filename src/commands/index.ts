@@ -6,6 +6,7 @@ import {PingCommand} from "./ping";
 import {SayAs} from "./say-as";
 import {KaoMaMuteCommand} from "./kaoMaMuteCommand";
 import {KaoMaDemuteCommand} from "./kaoMaDemuteCommand";
+import {PinMessage} from "./pinMessage";
 
 export const commands: Command[] = [
   new GagCommand(),
@@ -14,5 +15,6 @@ export const commands: Command[] = [
   new PingCommand(),
   new SayAs(),
   new KaoMaMuteCommand(),
-  new KaoMaDemuteCommand()
+  new KaoMaDemuteCommand(),
+  new PinMessage()
 ];
