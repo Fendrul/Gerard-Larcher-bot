@@ -23,7 +23,7 @@ export class PinMessage implements Command {
     try {
       messageToPin = await interaction.channel?.messages.fetch(messageID);
     } catch (error) {
-      return interaction.reply("Message not found");
+      return interaction.reply({content: "Message not found", ephemeral: true});
     }
 
     if (messageToPin?.channel.type === ChannelType.GuildPublicThread || messageToPin?.channel.type === ChannelType.GuildPrivateThread) {
@@ -36,7 +36,7 @@ export class PinMessage implements Command {
     }
 
     if (!channel) {
-      return interaction.reply("Channel not found");
+      return interaction.reply({content: "Channel not found", ephemeral: true});
     }
 
 
@@ -67,6 +67,7 @@ export class PinMessage implements Command {
     );
 
 
-    return interaction.reply("Message pinned");
+    //create an ephemeral message to confirm the pin
+    return interaction.reply({content: "Message épinglé !", ephemeral: true});
   }
 }
