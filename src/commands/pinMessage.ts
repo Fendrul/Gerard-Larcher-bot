@@ -18,7 +18,7 @@ export class PinMessage implements Command {
     let channel: TextChannel | undefined;
 
 
-    let messageToPin: Message<true> | Message<false> | undefined;
+    let messageToPin: Message<boolean> | undefined;
 
     try {
       messageToPin = await interaction.channel?.messages.fetch(messageID);
@@ -50,15 +50,11 @@ export class PinMessage implements Command {
       console.log("thread created");
     }
 
-    console.log("contenu du message à pin : " + messageToPin?.content);
-
     if (messageToPin?.content && messageToPin?.content !== "") {
       MessageToPinContent = messageToPin.content;
     } else {
       MessageToPinContent = "Link";
     }
-
-    console.log("contenu du message à pin récupéré : " + MessageToPinContent);
 
     if (messageToPin?.attachments.size && messageToPin.attachments.size > 0) {
       messageToPin.attachments.forEach((attachment) => {
