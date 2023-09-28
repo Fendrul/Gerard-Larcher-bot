@@ -52,9 +52,6 @@ export class PinMessage implements Command {
 
     if (messageToPin?.content && messageToPin?.content !== "") {
       MessageToPinContent = messageToPin.content;
-    } else {
-      MessageToPinContent = "Link";
-    }
 
     if (messageToPin?.attachments.size && messageToPin.attachments.size > 0) {
       messageToPin.attachments.forEach((attachment) => {
