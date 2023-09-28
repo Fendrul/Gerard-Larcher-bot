@@ -18,6 +18,7 @@
     "dev": "tsx watch src/index.ts",
     "start": "npm run build && forever start ./dist/index.js",
     "stop": "forever stop ./dist/index.js",
+    "restart": "npm run build && forever restart ./dist/index.js",
     "build": "tsc",
     "format": "prettier --write \"**/*.{json,ts}\"",
     "lint": "eslint . --ext ts --fix",

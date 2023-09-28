@@ -58,12 +58,12 @@ export class PinMessage implements Command {
 
     if (messageToPin?.attachments.size && messageToPin.attachments.size > 0) {
       messageToPin.attachments.forEach((attachment) => {
-        attachmentURLs += attachment.url + "\n";
+        attachmentURLs += "[" + attachment.name + "](" + attachment.url + ") ";
       });
     }
 
     thread?.send(
-      `- [${MessageToPinContent}](<${messageToPin?.url}>) \n ${attachmentURLs}`,
+      `- ${messageToPin?.author.username} : [${MessageToPinContent}](<${messageToPin?.url}>) \n\n ${attachmentURLs}`,
     );
 
 
