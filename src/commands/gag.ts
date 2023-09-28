@@ -29,5 +29,4 @@ export class GagCommand implements Command {
       return interaction.reply("Tu essaies de gag quelqu'un alors que tu l'es toi-même, pas sous le règne de la terreur de Gérard Larcher !");
     }
   }
-
 }

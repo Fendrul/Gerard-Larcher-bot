@@ -4,6 +4,8 @@ import {UngagCommand} from "./ungagCommand";
 import {ResponseCommand} from "./response";
 import {PingCommand} from "./ping";
 import {SayAs} from "./say-as";
+import {KaoMaMuteCommand} from "./kaoMaMuteCommand";
+import {KaoMaDemuteCommand} from "./kaoMaDemuteCommand";
 
 export const commands: Command[] = [
   new GagCommand(),
@@ -11,4 +13,6 @@ export const commands: Command[] = [
   new ResponseCommand(),
   new PingCommand(),
   new SayAs(),
+  new KaoMaMuteCommand(),
+  new KaoMaDemuteCommand()
 ];
