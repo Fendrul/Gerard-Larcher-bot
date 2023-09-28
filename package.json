@@ -16,8 +16,8 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "pm2": "pm2 start npm --name \"discord bot\" -- run start",
-    "start": "npm run build && node --enable-source-maps .\\dist\\index.js",
+    "start": "npm run build && forever start ./dist/index.js",
+    "stop": "forever stop ./dist/index.js",
     "build": "tsc",
     "format": "prettier --write \"**/*.{json,ts}\"",
     "lint": "eslint . --ext ts --fix",
@@ -27,6 +27,7 @@
     "crypto-js": "^4.1.1",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
+    "forever": "^4.0.3",
     "jsmin": "^1.0.1",
     "pm2": "^5.3.0",
     "typescript-optional": "^3.0.0-alpha.3"
