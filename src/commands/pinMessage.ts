@@ -25,7 +25,7 @@ export class PinMessage implements Command {
       return interaction.reply({content: "Message not found", ephemeral: true});
     }
 
-    if (messageToPin?.channel.type === ChannelType.GuildPublicThread || messageToPin?.channel.type === ChannelType.GuildPrivateThread) {
+    if (messageToPin?.channel.type === ChannelType.PublicThread || messageToPin?.channel.type === ChannelType.PrivateThread) {
       const parentChannel = messageToPin.channel.parent;
       if (parentChannel instanceof TextChannel) {
         channel = parentChannel;
@@ -50,13 +50,11 @@ export class PinMessage implements Command {
       }
     }
 
-    if (messageToPin?.content) {
-      MessageToPinContent = messageToPin.content;
-    }
+    MessageToPinContent = messageToPin?.content ? messageToPin.content : "";
 
     if (messageToPin?.attachments.size && messageToPin.attachments.size > 0) {
       messageToPin.attachments.forEach((attachment) => {
-        attachmentURLs += "[" + attachment.name + "](" + attachment.url + ") ";
+        attachmentURLs += `[${attachment.name}](${attachment.url}) `;
       });
     }
 
