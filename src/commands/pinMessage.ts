@@ -17,7 +17,6 @@ export class PinMessage implements Command {
     let attachmentURLs = "";
     let channel: TextChannel | undefined;
 
-
     let messageToPin: Message<boolean> | undefined;
 
     try {
@@ -39,18 +38,19 @@ export class PinMessage implements Command {
       return interaction.reply({content: "Channel not found", ephemeral: true});
     }
 
-
     let thread = channel.threads.cache.find((thread) => thread.name === threadToPinName);
-
 
     if (!thread) {
       thread = await channel.threads.create({
         name: threadToPinName,
       });
-      console.log("thread created");
+    } else {
+      if (thread.archived) {
+        await thread.setArchived(false);
+      }
     }
 
-    if (messageToPin?.content && messageToPin?.content !== "") {
+    if (messageToPin?.content) {
       MessageToPinContent = messageToPin.content;
     }
 
