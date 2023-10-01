@@ -10,11 +10,16 @@ export class KaoMaMuteCommand implements Command {
     .setDescription("ICI C'EST PARIS !");
 
   public execute(interaction: ChatInputCommandInteraction): Promise<InteractionResponse<boolean>> {
-    const kaoMuteService = KaoMuteService.getInstance();
+    const guildID = interaction.guildId;
 
-    kaoMuteService.setKaoMaMute(true);
-    kaoMuteService.setChannel(interaction.channel);
+    if (!guildID) {
+      return interaction.reply({content: "ID de serveur non trouvé", ephemeral: true});
+    }
 
-    return interaction.reply("ICI C'EST PARIS !");
+    const kaoMuteService = KaoMuteService.createInstance(guildID, interaction.channel);
+
+    kaoMuteService.activate();
+
+    return interaction.reply("Opération Tango lancée");
   }
 }

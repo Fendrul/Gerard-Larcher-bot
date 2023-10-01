@@ -10,10 +10,20 @@ export class KaoMaDemuteCommand implements Command {
     .setDescription("ICI C'EST PARIS !");
 
   public execute(interaction: ChatInputCommandInteraction): Promise<InteractionResponse<boolean>> {
-    const configService = KaoMuteService.getInstance();
+    const guildID = interaction.guildId;
 
-    configService.setKaoMaMute(false);
+    if (!guildID) {
+      return interaction.reply({content: "ID de serveur non trouvé", ephemeral: true});
+    }
 
-    return interaction.reply("Hihi, oki.");
+    const kaoMuteService = KaoMuteService.getInstanceFromServerID(guildID);
+
+    if (!kaoMuteService) {
+      return interaction.reply({content: "Aucun spam trouvé pour ce serveur", ephemeral: true});
+    }
+
+    kaoMuteService.deleteInstance();
+
+    return interaction.reply("Opération demute réussie");
   }
 }
