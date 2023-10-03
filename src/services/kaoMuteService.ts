@@ -1,10 +1,10 @@
 import {CacheType, CacheTypeReducer, GuildTextBasedChannel, TextBasedChannel} from "discord.js";
-import {CronJob} from "cron";
+import {ThreadHandler} from "../handlers/threadHandler";
 
 export class KaoMuteService {
   //create a map  of serverId -> KaoMuteService
   private static instances = new Map<string, KaoMuteService>();
-  private cronJob: CronJob;
+  private spamThread = new ThreadHandler();
   private channel: CacheTypeReducer<
     CacheType,
     GuildTextBasedChannel | null,
@@ -23,9 +23,6 @@ export class KaoMuteService {
       TextBasedChannel | null
     >) {
     this.channel = channel;
-    this.cronJob = new CronJob("* * * * * *", () => {
-      this.channel?.send(this.message);
-    });
   }
 
   static createInstance(guildID: string, channel: CacheTypeReducer<CacheType, GuildTextBasedChannel | null, GuildTextBasedChannel | null, GuildTextBasedChannel | null, TextBasedChannel | null>) {
@@ -48,17 +45,19 @@ export class KaoMuteService {
   }
 
   activate() {
-    this.cronJob = new CronJob("* * * * * *", () => {
-      this.channel?.send(this.message);
-    });
+    this.spamThread.start(async () => {
+      if (this.channel) {
+        console.log(this.channel.id);
+      }
 
-    this.cronJob.start();
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    });
   }
 
   public deleteInstance() {
-    this.cronJob.stop();
-    KaoMuteService.instances.forEach((instance, key) => {
+    this.spamThread.stop();
 
+    KaoMuteService.instances.forEach((instance, key) => {
       if (instance === this) {
         KaoMuteService.instances.delete(key);
       }
@@ -71,10 +70,6 @@ export class KaoMuteService {
 
   public getMessage(): string {
     return this.message;
-  }
-
-  private testTask() {
-    console.log("test");
   }
 
   private setChannel(channel: CacheTypeReducer<CacheType, GuildTextBasedChannel | null, GuildTextBasedChannel | null, GuildTextBasedChannel | null, TextBasedChannel | null>) {

@@ -25,7 +25,6 @@
     "commands:register": "npm run build && node --enable-source-maps dist/register-command.js"
   },
   "dependencies": {
-    "cron": "^3.0.0",
     "crypto-js": "^4.1.1",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
