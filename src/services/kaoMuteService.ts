@@ -47,7 +47,7 @@ export class KaoMuteService {
   activate() {
     this.spamThread.start(async () => {
       if (this.channel) {
-        console.log(this.channel.id);
+        this.channel.send(this.message);
       }
 
       await new Promise((resolve) => setTimeout(resolve, 1000));
