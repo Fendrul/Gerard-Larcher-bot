@@ -1,13 +1,13 @@
 import {Command} from "../models/interfaces/Command";
 import {ChatInputCommandInteraction, InteractionResponse, SlashCommandBuilder} from "discord.js";
-import {KaoMuteService} from "../services/kaoMuteService";
+import {MuteService} from "../services/muteService";
 
-export class KaoMaDemuteCommand implements Command {
-  public name = "kaomademute";
+export class OnMADemute implements Command {
+  public name = "onmademute";
 
   public data = new SlashCommandBuilder()
     .setName(this.name)
-    .setDescription("ICI C'EST PARIS !");
+    .setDescription("Décapitation terminée");
 
   public execute(interaction: ChatInputCommandInteraction): Promise<InteractionResponse<boolean>> {
     const guildID = interaction.guildId;
@@ -16,14 +16,14 @@ export class KaoMaDemuteCommand implements Command {
       return interaction.reply({content: "ID de serveur non trouvé", ephemeral: true});
     }
 
-    const kaoMuteService = KaoMuteService.getInstanceFromServerID(guildID);
+    const kaoMuteService = MuteService.getInstanceFromServerID(guildID);
 
     if (!kaoMuteService) {
       return interaction.reply({content: "Aucun spam trouvé pour ce serveur", ephemeral: true});
     }
 
-    kaoMuteService.deleteInstance();
+    kaoMuteService.deleteInstance(guildID);
 
-    return interaction.reply("Opération demute réussie");
+    return interaction.reply("L'endroit a été mis à feu et à sang");
   }
 }

@@ -1,4 +1,4 @@
-export class ThreadHandler {
+export class AsyncFunctionController {
   private shouldStop = false;
 
   async start(func: () => void) {

@@ -4,8 +4,8 @@ import {UngagCommand} from "./ungagCommand";
 import {ResponseCommand} from "./response";
 import {PingCommand} from "./ping";
 import {SayAs} from "./say-as";
-import {KaoMaMuteCommand} from "./kaoMaMuteCommand";
-import {KaoMaDemuteCommand} from "./kaoMaDemuteCommand";
+import {OnMAMute} from "./onMAMute";
+import {OnMADemute} from "./onMADemute";
 import {PinMessage} from "./pinMessage";
 
 export const commands: Command[] = [
@@ -14,7 +14,7 @@ export const commands: Command[] = [
   new ResponseCommand(),
   new PingCommand(),
   new SayAs(),
-  new KaoMaMuteCommand(),
-  new KaoMaDemuteCommand(),
+  new OnMAMute(),
+  new OnMADemute(),
   new PinMessage()
 ];
