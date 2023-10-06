@@ -1,17 +1,16 @@
 {
-  "name": "discord-bot-template",
+  "name": "discord-bot",
   "version": "1.0.0",
-  "description": "A Discord bot boilerplate including TypeScript and ESLint.",
+  "description": "A Discord bot for friends.",
   "author": {
-    "email": "fellipeutaka@gmail.com",
-    "name": "Fellipe Utaka"
+    "name": "Simon Strykers"
   },
   "license": "MIT",
   "private": true,
-  "homepage": "https://github.com/fellipeutaka/discord-bot-template",
+  "homepage": "https://github.com/Fendrul/Gerard-Larcher-bot",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fellipeutaka/discord-bot-template.git"
+    "url": "https://github.com/Fendrul/Gerard-Larcher-bot.git"
   },
   "main": "dist/index.js",
   "scripts": {
@@ -30,7 +29,7 @@
     "crypto-js": "^4.1.1",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
-    "forever": "^0.14.2",
+    "forever": "^4.0.3",
     "jsmin": "^1.0.1",
     "nodemon": "^3.0.1",
     "pm2": "^5.3.0",
