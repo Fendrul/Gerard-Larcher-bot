@@ -9,6 +9,6 @@ export class PingCommand implements Command {
     .setDescription("Replies with Pong!");
 
   public async execute(interaction: ChatInputCommandInteraction) {
-    return interaction.reply("Ta mère la race !");
+    return interaction.reply("Tu aimes les flans ?");
   }
 }

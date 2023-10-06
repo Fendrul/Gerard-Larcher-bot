@@ -7,6 +7,7 @@ import {SayAs} from "./say-as";
 import {OnMAMute} from "./onMAMute";
 import {OnMADemute} from "./onMADemute";
 import {PinMessage} from "./pinMessage";
+import {CutImage} from "./cutImage";
 
 export const commands: Command[] = [
   new GagCommand(),
@@ -16,5 +17,6 @@ export const commands: Command[] = [
   new SayAs(),
   new OnMAMute(),
   new OnMADemute(),
-  new PinMessage()
+  new PinMessage(),
+  new CutImage()
 ];

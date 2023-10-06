@@ -4,10 +4,12 @@ import {InsultService} from "../services/insult-service";
 import {GagService} from "../services/gag-service";
 import {CustomResponseService} from "../services";
 import {stringDetector} from "../utils/stringDetector";
+import {ParamsService} from "../services/paramsService";
 
 export function messageCreateEvent(client: Client<boolean>) {
   const gagService = GagService.getInstance();
   const customResponseService = CustomResponseService.getInstance();
+  const paramsService = ParamsService.getInstace();
 
   client.on(Events.MessageCreate, async (message) => {
     if (message.author.bot) return;
@@ -22,20 +24,22 @@ export function messageCreateEvent(client: Client<boolean>) {
     }
 
     //check if the end of the content is "quoi"
-    const lastWord = message.content.replaceAll(/[!\"#\＄%&\'\(\)\*\+,-\./:;<=>\?@\[\\\]\^_`{\|}~]/g, "").replaceAll(" ", "").toLowerCase();
+    if (paramsService.getQuoicoubehRunning()) {
+      const lastWord = message.content.replaceAll(/[!\"#\＄%&\'\(\)\*\+,-\./:;<=>\?@\[\\\]\^_`{\|}~]/g, "").replaceAll(" ", "").toLowerCase();
 
-    if (lastWord) {
-      if (stringDetector(lastWord, "quoi", "coi", "kwa", "coua", "koua", "koi")) {
-        await message.reply("QUOICOUBEH ?!");
-        return;
-      } else if (lastWord.endsWith("hein")) {
-        await message.reply("APAGNANHAAAAAAAN");
-        return;
+      if (lastWord) {
+        if (stringDetector(lastWord, "quoi", "coi", "kwa", "coua", "koua", "koi")) {
+          await message.reply("QUOICOUBEH ?!");
+          return;
+        } else if (lastWord.endsWith("hein")) {
+          await message.reply("APAGNANHAAAAAAAN");
+          return;
+        }
       }
     }
 
     //check if the message answer to the bot
-    if (message.mentions.users.has(config.DISCORD_CLIENT_ID)) {
+    if (paramsService.getInsultsRunning() && message.mentions.users.has(config.DISCORD_CLIENT_ID)) {
       const insultService = InsultService.getInstance();
       await message.reply(insultService.getInsult());
       return;
@@ -49,7 +53,7 @@ export function messageCreateEvent(client: Client<boolean>) {
     }
 
     //random insult
-    if (Math.floor(Math.random() * 100) == 1) {
+    if (paramsService.getInsultsRunning() && Math.floor(Math.random() * 100) == 1) {
       const insultService = InsultService.getInstance();
       const insult = insultService.getInsult();
 
