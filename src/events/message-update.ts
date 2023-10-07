@@ -7,19 +7,11 @@ export function messageUpdateEvent(client: Client<boolean>) {
     const paramsService = ParamsService.getInstace();
     const logChannel = await client.channels.fetch(paramsService.getLogChannel());
 
-    console.log("Vérification des conditions");
-
     if (!newMessage.author || newMessage.author.bot || !logChannel || !(logChannel instanceof TextChannel)) return;
-
-    console.log("Vérification des conditions 2");
 
     if (newMessage.author.bot) return;
 
-    console.log("Fetching du message");
-
     if (!await fetchPartial(oldMessage) || !await fetchPartial(newMessage)) return;
-
-    console.log("création de l'embed");
 
     const embedMessage = new EmbedBuilder()
       .setColor("#0099ff")
