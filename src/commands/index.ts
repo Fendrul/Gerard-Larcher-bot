@@ -8,6 +8,8 @@ import {OnMAMute} from "./onMAMute";
 import {OnMADemute} from "./onMADemute";
 import {PinMessage} from "./pinMessage";
 import {CutImage} from "./cutImage";
+import {ToggleQuoicoubeh} from "./toggleQuoicoubeh";
+import {ToggleInsults} from "./toggleInsults";
 
 export const commands: Command[] = [
   new GagCommand(),
@@ -18,5 +20,7 @@ export const commands: Command[] = [
   new OnMAMute(),
   new OnMADemute(),
   new PinMessage(),
-  new CutImage()
+  new CutImage(),
+  new ToggleQuoicoubeh(),
+  new ToggleInsults()
 ];
