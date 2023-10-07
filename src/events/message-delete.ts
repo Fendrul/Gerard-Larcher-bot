@@ -13,10 +13,8 @@ export function messageDeleteEvent(client: Client<boolean>) {
       try {
         await message.fetch();
       } catch (error) {
-        console.error(`Something went wrong when fetching the message: ${error}`);
         return;
       }
-
     }
 
     const embedMessage = new EmbedBuilder()

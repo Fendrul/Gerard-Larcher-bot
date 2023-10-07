@@ -4,6 +4,7 @@ import {dataInit} from "./data-init";
 import {messageCreateEvent} from "./events/message-create";
 import {interactionCreateEvent} from "./events/interaction-create";
 import {messageDeleteEvent} from "./events/message-delete";
+import {messageUpdateEvent} from "./events/message-update";
 
 export const client = new Client({
   intents: [
@@ -28,6 +29,7 @@ async function main() {
 
   messageCreateEvent(client);
   messageDeleteEvent(client);
+  messageUpdateEvent(client);
   interactionCreateEvent(client);
 
   await client.login(config.DISCORD_TOKEN);
