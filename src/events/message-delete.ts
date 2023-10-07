@@ -21,7 +21,11 @@ export function messageDeleteEvent(client: Client<boolean>) {
 
     const embedMessage = new EmbedBuilder()
       .setColor("#0099ff")
-      .setTitle("Message supprimé de " + message.author.username)
+      .setAuthor({
+        name: message.author.username,
+        iconURL: message.author.avatarURL() || undefined,
+      })
+      .setTitle("Message supprimé")
       .setDescription(`${message.channel} : ${message.content}`);
 
     await logChannel.send({embeds: [embedMessage]});
