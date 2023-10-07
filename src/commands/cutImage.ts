@@ -1,6 +1,6 @@
 import {Command} from "../models/interfaces/Command";
 import {AttachmentBuilder, ChatInputCommandInteraction, InteractionResponse, SlashCommandBuilder} from "discord.js";
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import sharp from "sharp";
 
 export class CutImage implements Command {
@@ -23,24 +23,25 @@ export class CutImage implements Command {
     });
 
   async execute(interaction: ChatInputCommandInteraction): Promise<InteractionResponse<boolean>> {
-    const imageURL = interaction.options.getString("url");
     const imageAttachment = interaction.options.getAttachment("image");
-    const token = interaction.token;
-    let imageBuffer: Buffer;
+    let imageURL = interaction.options.getString("url");
+    let response: AxiosResponse<any, any>;
 
-    if (!imageURL && !imageAttachment) {
-      return interaction.reply({content: "Il n'y a ni URL, ni image donnée dans la commande", ephemeral: true});
+    if (!imageURL) {
+      if (imageAttachment) {
+        imageURL = imageAttachment.url;
+      } else {
+        return interaction.reply({content: "Il n'y a ni URL, ni image donnée dans la commande", ephemeral: true});
+      }
     }
 
-    if (imageURL) {
-      const response = await axios.get(imageURL, {responseType: "arraybuffer"});
-      imageBuffer = Buffer.from(response.data, "binary");
-    } else if (imageAttachment) {
-      const response = await axios.get(imageAttachment.url, {responseType: "arraybuffer"});
-      imageBuffer = Buffer.from(response.data, "binary");
+    try {
+      response = await axios.get(imageURL, {responseType: "arraybuffer"});
+    } catch (error) {
+      return interaction.reply({content: "Impossible de récupérer l'image", ephemeral: true});
     }
 
-    // @ts-ignore
+    const imageBuffer = Buffer.from(response.data, "binary");
     if (!imageBuffer) {
       return interaction.reply({content: "Impossible de récupérer l'image", ephemeral: true});
     }
