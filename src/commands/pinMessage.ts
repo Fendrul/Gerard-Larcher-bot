@@ -58,7 +58,7 @@ export class PinMessage implements Command {
       });
     }
 
-    thread?.send(
+    thread.send(
       `- [${messageToPin?.author.username}](<${messageToPin?.url}>) : ${MessageToPinContent} \n\n ${attachmentURLs}`,
     );
 

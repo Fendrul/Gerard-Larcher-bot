@@ -15,7 +15,7 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "start:watch": "nodemon --watch './dist/**/*' --exec node ./dist/index.js ",
+    "start:watch": "nodemon --watch './dist/**/*' --exec node ./dist/index.js",
     "start": "npm run build && forever start ./dist/index.js",
     "stop": "forever stop ./dist/index.js",
     "restart": "npm run build && forever restart ./dist/index.js",

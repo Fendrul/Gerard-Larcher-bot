@@ -13,21 +13,40 @@ export class CutImage implements Command {
       return option
         .setName("url")
         .setDescription("Url de l'image à couper")
-        .setRequired(true);
+        .setRequired(false);
+    })
+    .addAttachmentOption((option) => {
+      return option
+        .setName("image")
+        .setDescription("Image à couper")
+        .setRequired(false);
     });
 
   async execute(interaction: ChatInputCommandInteraction): Promise<InteractionResponse<boolean>> {
     const imageURL = interaction.options.getString("url");
+    const imageAttachment = interaction.options.getAttachment("image");
+    const token = interaction.token;
+    let imageBuffer: Buffer;
 
-    if (!imageURL) {
-      return interaction.reply({content: "URL non trouvée", ephemeral: true});
+    if (!imageURL && !imageAttachment) {
+      return interaction.reply({content: "Il n'y a ni URL, ni image donnée dans la commande", ephemeral: true});
     }
 
-    const response = await axios.get(imageURL, {responseType: "arraybuffer"});
-    const imageBuffer = Buffer.from(response.data, "binary");
+    if (imageURL) {
+      const response = await axios.get(imageURL, {responseType: "arraybuffer"});
+      imageBuffer = Buffer.from(response.data, "binary");
+    } else if (imageAttachment) {
+      const response = await axios.get(imageAttachment.url, {responseType: "arraybuffer"});
+      imageBuffer = Buffer.from(response.data, "binary");
+    }
 
-    const image = sharp(imageBuffer);
-    const metadata = await image.metadata();
+    // @ts-ignore
+    if (!imageBuffer) {
+      return interaction.reply({content: "Impossible de récupérer l'image", ephemeral: true});
+    }
+
+    const sharpImage = sharp(imageBuffer);
+    const metadata = await sharpImage.metadata();
 
     if (!metadata.width || !metadata.height) {
       return interaction.reply({content: "Impossible de récupérer les dimensions de l'image", ephemeral: true});
@@ -38,25 +57,25 @@ export class CutImage implements Command {
     const rightWidth = metadata.width - halfWidth;
     const bottomHeight = metadata.height - halfHeight;
 
-    const leftUpperBuffer = await image.clone().extract({
+    const leftUpperBuffer = await sharpImage.clone().extract({
       left: 0,
       top: 0,
       width: halfWidth,
       height: halfHeight
     }).toBuffer();
-    const rightUpperBuffer = await image.clone().extract({
+    const rightUpperBuffer = await sharpImage.clone().extract({
       left: halfWidth,
       top: 0,
       width: rightWidth,
       height: halfHeight
     }).toBuffer();
-    const leftBottomBuffer = await image.clone().extract({
+    const leftBottomBuffer = await sharpImage.clone().extract({
       left: 0,
       top: halfHeight,
       width: halfWidth,
       height: bottomHeight
     }).toBuffer();
-    const rightBottomBuffer = await image.clone().extract({
+    const rightBottomBuffer = await sharpImage.clone().extract({
       left: halfWidth,
       top: halfHeight,
       width: rightWidth,
