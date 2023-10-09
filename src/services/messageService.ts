@@ -35,8 +35,6 @@ export class MessageService {
       after: firstMesage.id,
     });
 
-    console.log(allMessages);
-
     allMessages.set(firstMesage.id, firstMesage);
 
     return allMessages.filter((message) => {
