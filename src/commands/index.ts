@@ -10,6 +10,7 @@ import {PinMessage} from "./pinMessage";
 import {CutImage} from "./cutImage";
 import {ToggleQuoicoubeh} from "./toggleQuoicoubeh";
 import {ToggleInsults} from "./toggleInsults";
+import {BulkDelete} from "./bulkDelete";
 
 export const commands: Command[] = [
   new GagCommand(),
@@ -22,5 +23,6 @@ export const commands: Command[] = [
   new PinMessage(),
   new CutImage(),
   new ToggleQuoicoubeh(),
-  new ToggleInsults()
+  new ToggleInsults(),
+  new BulkDelete()
 ];
